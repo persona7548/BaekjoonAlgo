@@ -1,10 +1,11 @@
 #include <iostream>
 #include <algorithm>
 #include <queue>
+#include <math.h>
 using namespace std;
 
-int puzzle[10];
-int answer[10];
+
+int answer = 123456780;
 
 int valueCheck() {
 	int h = 0;
@@ -14,29 +15,23 @@ int valueCheck() {
 	return h;
 }
 
-int Astar(int zero) {
+int Astar(int puzzle) {
 	int count = 0;
 	priority_queue <pair<int, int>> pq;
-	pq.push(make_pair(count + valueCheck(), zero));
+	pq.push(make_pair(count + valueCheck(), puzzle));
 	while (!pq.empty()) {
 		int prevW = (-pq.top().first) - count;
 		int zerp = pq.top().second;
 		pq.pop();
 
 		count++;
-
-		while () {
-			for (int i = -3; i <= 3; i += 2) {
-				if (zero + i > 0 && zero + i < 10) {
-					swap(puzzle[zero], puzzle[zero + i]);
-
-					pq.push(make_pair(-(valueCheck() + count), zero + i));
-
-					swap(puzzle[zero], puzzle[zero + i]);
-				}
+		for (int i = -3; i <= 3; i += 2) {
+			if (zero + i > 0 && zero + i < 10) {
+			
 			}
 		}
-		if (prevW >= (-pq.top().first)-count) {
+
+		if (prevW >= (-pq.top().first) - count) {
 			swap(puzzle[zero], puzzle[pq.top().second]);
 			if (valueCheck() == 0) {
 				cout << count << endl;
@@ -50,16 +45,13 @@ int Astar(int zero) {
 	return -1;
 }
 int main() {
-	int zero;
-	int count = 0;
-	for (int i = 1; i <= 8; i++) {
-		answer[i] = i;
-		cin >> puzzle[i];
-		if (puzzle[i] == 0) {
-			zero = i;
-		}
+	int puzzle = 0, temp;
+	for (int i = 0; i < 9; i++) {
+		cin >> temp;
+		puzzle *= 10;
+		puzzle += temp;
 	}
 
-	cout << Astar(zero);
+	cout << Astar(puzzle);
 	return 0;
 }

@@ -19,3 +19,4 @@ int main() {
 		sum += stack[i];
 	cout << sum << endl;
 }
+
